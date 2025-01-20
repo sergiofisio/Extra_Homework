@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../prisma";
 
 const addClass = async (req: Request, res: Response) => {
-  const { nome, descricao, materia } = req.body;
-  console.log("rota post");
+  const { nome, descricao, materia, professor } = req.body;
 
   try {
     const findClass = await prisma.sala_de_aula.findUnique({
@@ -13,11 +12,12 @@ const addClass = async (req: Request, res: Response) => {
     });
     if (findClass) throw new Error("Sala de aula ja cadastrada");
 
-    const classroom = await prisma.sala_de_aula.create({
+    await prisma.sala_de_aula.create({
       data: {
         nome,
         descricao,
         materia,
+        professor,
       },
     });
 

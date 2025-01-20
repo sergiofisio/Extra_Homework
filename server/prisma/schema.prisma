@@ -18,6 +18,25 @@ model sala_de_aula {
   nome      String   @unique
   descricao String
   materia   String
+  professor String
+  materias  materia_da_aula[]
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
+}
+
+model materia_da_aula{
+  id        Int      @id @default(autoincrement())
+  materia   String
+  descricao String
+  sala_de_aula sala_de_aula @relation(fields: [sala_de_aulaId], references: [id])
+  sala_de_aulaId Int
+  data      DateTime
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
+
+model materia{
+  id        Int      @id @default(autoincrement())
+  nome      String
+  imagem    String
 }

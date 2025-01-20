@@ -3,7 +3,7 @@ import { prisma } from "../../prisma";
 
 const updateClassRoom = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { nome, descricao, materia } = req.body;
+  const { nome, descricao, materia, professor } = req.body;
 
   try {
     const find = await prisma.sala_de_aula.findUnique({
@@ -22,6 +22,7 @@ const updateClassRoom = async (req: Request, res: Response) => {
         nome,
         descricao,
         materia,
+        professor,
       },
     });
 

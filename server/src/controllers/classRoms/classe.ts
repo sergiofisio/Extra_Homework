@@ -9,6 +9,9 @@ const classe = async (req: Request, res: Response) => {
       where: {
         id: Number(id),
       },
+      include: {
+        materias: true,
+      },
     });
 
     res.status(200).json(classe);
